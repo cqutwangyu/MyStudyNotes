@@ -17,6 +17,7 @@ Java基础笔记
 ```Java
        "Hello".equalsIgnoreCase("hello");
 ```
+结果为：<br>
 `true`<br>
 `equalsIgnoreCase`可以无视大小写匹配字符串
 
@@ -25,7 +26,8 @@ Java基础笔记
         System.out.println(str==null);
         System.out.println(str.length());
 ```
-`false`
+结果为：<br>
+`false`<br>
 `0`<br>
 `String`可以为空串，长度为`0`，但不为`null`
 ```
@@ -33,3 +35,85 @@ Java基础笔记
         if(str!=null&&str.length()!=0)
 ```
 当`String`为`null`时`str.length()`会报错，所以先判断是否为空，可以避免这个`BUG`
+
+#StringBuilder的作用
+----------
+  有些时候，需要由较短的字符串构建字符串，例如，按键或来自文件中的单词。采用字符串连接的方式达到此目的效率比较低。每次连接字符串，都会构建一个新的`String`对象，既`耗时`，又`浪费空间`。使用`StringBuilder`类就可以`避免`这个问题的发生。如果需要用许多小段的字符串构建一个字符串，那么应该按照下列步骤进行。首先，构建一个空的字符串构建器：
+```Java
+        StringBuilder builder=new StringBuilderO；
+        builder.append("hello");
+        builder.append("world");
+        System.out.println(builder.toString());
+```
+结果为：<br>
+`helloworld`
+格式化输出
+------
+沿用了C语言库函数中的printf方法。例如:
+```Java
+
+        double x=10000.0/3.0;
+        System.out.println(x);
+        System.out.printf("%8.2f",x);
+```
+`3333.3333333333335`
+` 3333.33`<br>
+并且在`printf`中，可以使用多个参数，例如：
+```Java
+System.out.printf（"Hel1o，%s.Next year，you'11 be %d"，name，age）;
+```
+命令行参数`main`函数中`String[] args`参数的作用
+-------
+```Java
+public class Main {
+
+    public static void main(String[] args)
+    {
+        for(String a:args){
+            System.out.println(a);
+        }
+    }
+}
+控制台中执行Main
+java Main a b c d
+```
+结果为：<br>
+`a`<br>
+`b`<br>
+`c`<br>
+`d`<br>
+
+`String[] args`参数用于接收控制台传入的参数
+
+不规则数组
+--------
+利用不规则数组轻而易举的用`*`号输出一个三角形
+```Java
+ public static void main(String[] args)
+    {
+        int NMAX=3;
+        String[][] odds=new String[NMAX+1][];
+        for (int n=0;n<=NMAX;n++)
+        {
+            odds[n]=new String[n+1];
+            for (int i = 0; i <n+1 ; i++) {
+                odds[n][i]="*";
+            }
+        }
+        for (String[] odd:odds)
+        {
+            for (String od:odd)
+            {
+                System.out.printf(String.valueOf(od));
+            }
+            System.out.println();
+        }
+    }
+```
+结果为：<br>
+```Java
+*
+**
+***
+****
+```
