@@ -144,7 +144,7 @@ Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性�
  b.bonus();✔
  b.PromoteEmployees()✔
  ```
-动态绑定
+ 多态
 ------
   ```Java
  //基类包含所有派生类
@@ -157,3 +157,12 @@ Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性�
  Boss b=new Employee();✖
  Boss b=newManager();✖
  ```
+动态绑定
+-----
+同一个方法名，根据传入的参数类型不同，绑定不同的方法体，达到不一样的效果。
+```Java
+        String.valueOf(1);✔
+        String.valueOf(1.5);✔
+        String.valueOf(true);✔
+        String.valueOf(new Object());✔
+```
