@@ -166,3 +166,34 @@ Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性�
         String.valueOf(true);✔
         String.valueOf(new Object());✔
 ```
+抽象类
+----
+```Java
+public abstract class Person {
+    public abstract String getDescription();
+}
+public class Student extends Person{
+    public String getDescription() {
+        return "学习使我快乐！";
+    }
+}
+public class Employee extends Person {
+    public String getDescription() {
+        return "劳动最光荣！";
+    }
+}
+
+    public static void main(String[] args) {
+        Person[] people=new Person[2];
+        people[0]=new Student();
+        people[1]=new Employee();
+        for (Person p : people) {
+            System.out.println(p.getDescription());
+        }
+    } 
+```
+输出结果：
+```
+    学习使我快乐！
+    劳动最光荣！
+```
