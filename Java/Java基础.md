@@ -197,3 +197,6 @@ public class Employee extends Person {
     学习使我快乐！
     劳动最光荣！
 ```
+protected受保护的
+----
+`protected`修饰的类、对象、方法、变量，仅允许在同一个`package`目录下访问，如果在上一级或者下一集`package`中都会显示`编译错误`。
