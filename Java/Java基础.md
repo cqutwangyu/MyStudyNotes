@@ -19,7 +19,8 @@ Java基础笔记
 ```
 结果为：<br>
 `true`<br>
-`equalsIgnoreCase`可以无视大小写匹配字符串
+`equalsIgnoreCase`<br>
+可以无视大小写匹配字符串
 
 ```Java
         String str="";
@@ -117,3 +118,42 @@ java Main a b c d
 ***
 ****
 ```
+继承
+----
+ #继承
+ Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性和方法，Boss和Manager和Employee都属于公司的一员（这里假设都属于员工），    Employee=>Manager=>Boss从左到右看，是一种包含的关系Employee的数组可以存放Manager和Boss，而反过来则不行，Boss的数组不能存放Manager或Employee。
+```Java
+ public class Employee{
+        public void name(){}
+ }
+ public class Manager extends Employee{
+        public void bonus(){}
+ }
+ public class Boss extends Manager{
+        public void PromoteEmployees()
+ }
+ 
+ Employee e=new Employee();
+ e.name()✔
+ 
+ Manager m=new Manager();
+ m.name();✔
+ m.bonus();✔
+ 
+ Boss b=new Boss();
+ b.name();✔
+ b.bonus();✔
+ b.PromoteEmployees()✔
+ ```
+ #动态绑定
+  ```Java
+ //基类包含所有派生类
+ Employee e=new Manager();✔
+ Employee e=new Boss();✔
+ //派生类不包含超类（Employee）
+ Manager m=new Employee();✖
+ Manager m=new Boss();✔
+ 
+ Boss b=new Employee();✖
+ Boss b=newManager();✖
+ ```
