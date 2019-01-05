@@ -120,8 +120,7 @@ java Main a b c d
 ```
 继承
 ----
- #继承
- Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性和方法，Boss和Manager和Employee都属于公司的一员（这里假设都属于员工），    Employee=>Manager=>Boss从左到右看，是一种包含的关系Employee的数组可以存放Manager和Boss，而反过来则不行，Boss的数组不能存放Manager或Employee。
+Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性和方法，Boss和Manager和Employee都属于公司的一员（这里假设都属于员工），    Employee=>Manager=>Boss从左到右看，是一种包含的关系Employee的数组可以存放Manager和Boss，而反过来则不行，Boss的数组不能存放Manager或Employee。
 ```Java
  public class Employee{
         public void name(){}
@@ -145,7 +144,8 @@ java Main a b c d
  b.bonus();✔
  b.PromoteEmployees()✔
  ```
- #动态绑定
+动态绑定
+------
   ```Java
  //基类包含所有派生类
  Employee e=new Manager();✔
