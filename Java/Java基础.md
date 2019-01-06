@@ -19,8 +19,7 @@ Java基础笔记
 ```
 结果为：<br>
 `true`<br>
-`equalsIgnoreCase`<br>
-可以无视大小写匹配字符串
+`equalsIgnoreCase`可以忽略大小写匹配字符串
 
 ```Java
         String str="";
