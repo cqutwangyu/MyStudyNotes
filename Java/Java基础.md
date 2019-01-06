@@ -46,7 +46,7 @@ Java基础笔记
         System.out.println(builder.toString());
 ```
 结果为：<br>
-`helloworld`
+`helloworld`<br>
 格式化输出
 ------
 沿用了C语言库函数中的printf方法。例如:
