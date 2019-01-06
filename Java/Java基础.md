@@ -66,17 +66,18 @@ System.out.printf（"Hel1o，%s.Next year，you'11 be %d"，name，age）;
 命令行参数`main`函数中`String[] args`参数的作用
 -------
 ```Java
-public class Main {
+        public class Main {
 
-    public static void main(String[] args)
-    {
-        for(String a:args){
-            System.out.println(a);
+            public static void main(String[] args)
+            {
+                for(String a:args){
+                    System.out.println(a);
+                }
+            }
         }
-    }
-}
-控制台中执行Main
-java Main a b c d
+        
+        控制台中执行Main
+        java Main a b c d
 ```
 结果为：<br>
 `a`<br>
@@ -90,26 +91,26 @@ java Main a b c d
 --------
 利用不规则数组轻而易举的用`*`号输出一个三角形
 ```Java
- public static void main(String[] args)
-    {
-        int NMAX=3;
-        String[][] odds=new String[NMAX+1][];
-        for (int n=0;n<=NMAX;n++)
-        {
-            odds[n]=new String[n+1];
-            for (int i = 0; i <n+1 ; i++) {
-                odds[n][i]="*";
-            }
-        }
-        for (String[] odd:odds)
-        {
-            for (String od:odd)
+         public static void main(String[] args)
             {
-                System.out.printf(String.valueOf(od));
+                int NMAX=3;
+                String[][] odds=new String[NMAX+1][];
+                for (int n=0;n<=NMAX;n++)
+                {
+                    odds[n]=new String[n+1];
+                    for (int i = 0; i <n+1 ; i++) {
+                        odds[n][i]="*";
+                    }
+                }
+                for (String[] odd:odds)
+                {
+                    for (String od:odd)
+                    {
+                        System.out.printf(String.valueOf(od));
+                    }
+                    System.out.println();
+                }
             }
-            System.out.println();
-        }
-    }
 ```
 结果为：<br>
 ```Java
@@ -122,40 +123,40 @@ java Main a b c d
 ----
 Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性和方法，Boss和Manager和Employee都属于公司的一员（这里假设都属于员工），    Employee=>Manager=>Boss从左到右看，是一种包含的关系Employee的数组可以存放Manager和Boss，而反过来则不行，Boss的数组不能存放Manager或Employee。
 ```Java
- public class Employee{
-        public void name(){}
- }
- public class Manager extends Employee{
-        public void bonus(){}
- }
- public class Boss extends Manager{
-        public void PromoteEmployees()
- }
- 
- Employee e=new Employee();
- e.name()✔
- 
- Manager m=new Manager();
- m.name();✔
- m.bonus();✔
- 
- Boss b=new Boss();
- b.name();✔
- b.bonus();✔
- b.PromoteEmployees()✔
+         public class Employee{
+                public void name(){}
+         }
+         public class Manager extends Employee{
+                public void bonus(){}
+         }
+         public class Boss extends Manager{
+                public void PromoteEmployees()
+         }
+
+         Employee e=new Employee();
+         e.name()✔
+
+         Manager m=new Manager();
+         m.name();✔
+         m.bonus();✔
+
+         Boss b=new Boss();
+         b.name();✔
+         b.bonus();✔
+         b.PromoteEmployees()✔
  ```
  多态
 ------
   ```Java
- //基类包含所有派生类
- Employee e=new Manager();✔
- Employee e=new Boss();✔
- //派生类不包含超类（Employee）
- Manager m=new Employee();✖
- Manager m=new Boss();✔
- 
- Boss b=new Employee();✖
- Boss b=newManager();✖
+         //基类包含所有派生类
+         Employee e=new Manager();✔
+         Employee e=new Boss();✔
+         //派生类不包含超类（Employee）
+         Manager m=new Employee();✖
+         Manager m=new Boss();✔
+
+         Boss b=new Employee();✖
+         Boss b=newManager();✖
  ```
 动态绑定
 -----
@@ -169,28 +170,28 @@ Boss包含Manager和Employee的属性和方法，Manager包含Employee的属性�
 抽象类
 ----
 ```Java
-public abstract class Person {
-    public abstract String getDescription();
-}
-public class Student extends Person{
-    public String getDescription() {
-        return "学习使我快乐！";
-    }
-}
-public class Employee extends Person {
-    public String getDescription() {
-        return "劳动最光荣！";
-    }
-}
-
-    public static void main(String[] args) {
-        Person[] people=new Person[2];
-        people[0]=new Student();
-        people[1]=new Employee();
-        for (Person p : people) {
-            System.out.println(p.getDescription());
+        public abstract class Person {
+            public abstract String getDescription();
         }
-    } 
+        public class Student extends Person{
+            public String getDescription() {
+                return "学习使我快乐！";
+            }
+        }
+        public class Employee extends Person {
+            public String getDescription() {
+                return "劳动最光荣！";
+            }
+        }
+
+            public static void main(String[] args) {
+                Person[] people=new Person[2];
+                people[0]=new Student();
+                people[1]=new Employee();
+                for (Person p : people) {
+                    System.out.println(p.getDescription());
+                }
+            } 
 ```
 输出结果：
 ```
@@ -219,14 +220,14 @@ protected受保护的
 对象克隆
 -----
 ```Java
-Employee original=new Enployee("John Public"，50000);
-Employee copy =original;//copy和original引用同一个对象（copy和original所指向的地址空间相同）
-copy.raiseSalary(10);//copy和original的值同时被改变了
+        Employee original=new Enployee("John Public"，50000);
+        Employee copy =original;//copy和original引用同一个对象（copy和original所指向的地址空间相同）
+        copy.raiseSalary(10);//copy和original的值同时被改变了
 ```
 如果创建一个对象的新的copy，它的最初状态与original一样，但以后将可以各自改变各自的状态，那就需要使用clone方法。
 ```Java
-Eaployee copy =original.clone();//得到一个初始值和original相同，但地址空间不同的新对象
-copy.raiseSalary(10);//original没有改变，而copy改变
+        Eaployee copy =original.clone();//得到一个初始值和original相同，但地址空间不同的新对象
+        copy.raiseSalary(10);//original没有改变，而copy改变
 ```
 参数传递
 ----
@@ -260,8 +261,8 @@ copy.raiseSalary(10);//original没有改变，而copy改变
 * 对于基本类型，== 判断两个值是否相等，基本类型没有 equals() 方法。
 * 对于引用类型，== 判断两个变量是否引用同一个对象，而 equals() 判断引用的对象是否等价。
 ```Java
-Integer x = new Integer(1);
-Integer y = new Integer(1);
-System.out.println(x.equals(y)); // true
-System.out.println(x == y);      // false
+        Integer x = new Integer(1);
+        Integer y = new Integer(1);
+        System.out.println(x.equals(y)); // true
+        System.out.println(x == y);      // false
 ```
