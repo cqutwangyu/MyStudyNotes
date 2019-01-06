@@ -224,3 +224,30 @@ copy.raiseSalary(10);//copy和original的值同时被改变了
 Eaployee copy =original.clone();//得到一个初始值和original相同，但地址空间不同的新对象
 copy.raiseSalary(10);//original没有改变，而copy改变
 ```
+参数传递
+----
+将`e`对象传入方法，方法体中`e=new Employee(...)`，`new`的新对象仅在方法体内有效，方法体外，原对象不变。
+```Java
+        Employee e=new Employee("张三",2000);
+        System.out.println(e.toString()+e.getName()+e.getSalary());//polymorphic.Employee@1b6d3586张三2000.0
+        changeSalary(e);
+        System.out.println(e.toString()+e.getName()+e.getSalary());//polymorphic.Employee@1b6d3586张三2000.0
+
+    private static void changeSalary(Employee e){
+        e=new Employee("李四",1500);
+        System.out.println(e.toString()+e.getName()+e.getSalary());//polymorphic.Employee@4554617c李四1500.0
+    }
+```
+在方法体中`e=new Employee(...)`并`return e`，并在调用方法时`e=changeSalary(e)`将返回值赋给e，可使原对象被改变，若在方法体外不将返回值赋给e，原对象依旧不变。
+```Java
+        Employee e=new Employee("张三",2000);
+        System.out.println(e.toString()+e.getName()+e.getSalary());//polymorphic.Employee@1b6d3586张三2000.0
+        e=changeSalary(e);
+        System.out.println(e.toString()+e.getName()+e.getSalary());//polymorphic.Employee@4554617c李四1500.0
+
+    private static Employee changeSalary(Employee e){
+        e=new Employee("李四",1500);
+        System.out.println(e.toString()+e.getName()+e.getSalary());//polymorphic.Employee@4554617c李四1500.0
+        return e;
+    }
+```
