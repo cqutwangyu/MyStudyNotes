@@ -209,6 +209,18 @@ protected受保护的
 * 如果你想实现多重继承，那么你必须使用接口。由于Java不支持多继承，子类不能够继承多个类，但可以实现多个接口。因此你就可以使用接口来解决它。<br>
 * 如果基本功能在不断改变，那么就需要使用抽象类。如果不断改变基本功能并且使用接口，那么就需要改变所有实现了该接口的类。<br>
 ```Java
-        class Employee extends Person,Comparable✖
-        class Employee extends Person implements Comparable✔
+        class Employee extends Person,Comparable{}✖
+        class Employee extends Person implements Comparable{}✔
+```
+对象克隆
+-----
+```Java
+Employee original=new Enployee("John Public"，50000);
+Employee copy =original;//copy和original引用同一个对象（copy和original所指向的地址空间相同）
+copy.raiseSalary(10);//copy和original的值同时被改变了
+```
+如果创建一个对象的新的copy，它的最初状态与original一样，但以后将可以各自改变各自的状态，那就需要使用clone方法。
+```Java
+Eaployee copy =original.clone();//得到一个初始值和original相同，但地址空间不同的新对象
+copy.raiseSalary(10);//original没有改变，而copy改变
 ```
