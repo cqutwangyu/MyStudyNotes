@@ -49,5 +49,5 @@ public class LoginController {}
 java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
 ```
 * `错误原因`The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone.<br>
-* `解决方法1`url:jdbc:mysql://localhost:port/databasename`加上` `&serverTimezone=UTC`
+* `解决方法1`url:jdbc:mysql://localhost:port/databasename?`加上` serverTimezone=UTC,如果有多个参数需要用`&`连接
 * `解决方法2`控制台登录mysql用户，输入命令`set global time_zone='+8:00';`
