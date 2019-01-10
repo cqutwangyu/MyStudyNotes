@@ -42,3 +42,11 @@ public class LoginController {}
 ```
 * `解决方法:`将DemoApplication.java置于LoginController.java的上级目录或同级目录。
 * `得出结论:`SpringBootApplication启动类必须位于Controller控制类的同目录或父目录，如果放在子目录或者Controller类的兄弟目录下，都会在访问url时出现404错误。
+
+## 二、Spring Boot连接MySql (jdbc+DruidDataSource)
+* 错误信息如下：
+```Java
+java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+```
+* `关键信息`The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone.
+* `解决方法`url: jdbc:mysql://localhost:3306/db-jobms?useUnicode=true&characterEncoding=UTF-8&useSSL=false `加上` `&serverTimezone=UTC`
