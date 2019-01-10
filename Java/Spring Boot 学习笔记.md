@@ -50,9 +50,4 @@ java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is 
 ```
 * `错误原因`The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or represents more than one time zone.<br>
 * `解决方法1`url:jdbc:mysql://localhost:port/databasename`加上` `&serverTimezone=UTC`
-* `解决方法2`
-```cmd
-mysql -u root -p 
-password
-set global time_zone='+8:00';
-```
+* `解决方法2`控制台登录mysql用户，输入命令`set global time_zone='+8:00';`
