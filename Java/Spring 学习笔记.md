@@ -5,7 +5,6 @@ Spring 学习笔记
 ----
 * 使用idea创建新项目,勾选Spring(4.3.18),这样会自动导入Spring中常用的jar包,或者手动下载：[下载地址](https://repo.spring.io/libs-release-local/org/springframework/spring/ "点击下载")
 <br>
-<br>
 Java类：
 ```Java
 public class IAccountServiceImpl implements IAccountService {
@@ -14,6 +13,7 @@ public class AccountDaoImpl implements IAccountDao {
 }
 ```
 bean.xml：
+<br>
 ```Xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -25,6 +25,7 @@ bean.xml：
     <bean id="accountDao" class="com.wangyu.dao.impl.AccountDaoImpl"/>
 ```
 Main:
+<br>
 ```Java
     public static void main(String[] args) {
         //1.获取Spring的核心容器
