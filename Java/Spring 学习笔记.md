@@ -1,6 +1,8 @@
 Spring 学习笔记
 ====
-# Spring基于xml的IoC环境搭建
+
+一、Spring基于xml的IoC环境搭建
+----
 * 使用idea创建新项目,勾选Spring(4.3.18),这样会自动导入Spring中常用的jar包
 Java类：
 ```Java
