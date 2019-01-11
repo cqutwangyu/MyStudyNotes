@@ -3,16 +3,15 @@ Spring 学习笔记
 
 一、Spring基于xml的IoC环境搭建
 ----
-* 使用idea创建新项目,勾选Spring(4.3.18),这样会自动导入Spring中常用的jar包,或者手动下载：[下载地址](https://repo.spring.io/libs-release-local/org/springframework/spring/ "点击下载")
-<br>
-Java类：
+* 使用idea创建新项目,勾选Spring(4.3.18),这样会自动导入Spring中常用的jar包,或者手动下载：[下载地址](https://repo.spring.io/libs-release-local/org/springframework/spring/ "点击下载")<br>
+Java类：<br>
 ```Java
 public class IAccountServiceImpl implements IAccountService {
 }
 public class AccountDaoImpl implements IAccountDao {
 }
 ```
-bean.xml：
+bean.xml：<br>
 ```Xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -23,7 +22,7 @@ bean.xml：
     <bean id="accountService" class="com.wangyu.service.impl.IAccountServiceImpl"/>
     <bean id="accountDao" class="com.wangyu.dao.impl.AccountDaoImpl"/>
 ```
-Main:
+Main:<br>
 ```Java
     public static void main(String[] args) {
         //1.获取Spring的核心容器
@@ -35,7 +34,7 @@ Main:
         System.out.println(adao);
     }
 ```
-输出结果
+输出结果：
 ```Java
 com.wangyu.service.impl.IAccountServiceImpl@48eff760
 com.wangyu.dao.impl.AccountDaoImpl@402f32ff
