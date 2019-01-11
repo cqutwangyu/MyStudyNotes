@@ -13,7 +13,6 @@ public class AccountDaoImpl implements IAccountDao {
 }
 ```
 bean.xml：
-<br>
 ```Xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -25,7 +24,6 @@ bean.xml：
     <bean id="accountDao" class="com.wangyu.dao.impl.AccountDaoImpl"/>
 ```
 Main:
-<br>
 ```Java
     public static void main(String[] args) {
         //1.获取Spring的核心容器
