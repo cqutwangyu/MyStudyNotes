@@ -3,7 +3,7 @@ Spring 学习笔记
 
 一、Spring基于xml的IoC环境搭建
 ----
-* 使用idea创建新项目,勾选Spring(4.3.18),这样会自动导入Spring中常用的jar包
+* 使用idea创建新项目,勾选Spring(4.3.18),这样会自动导入Spring中常用的jar包,或者手动下载：[下载地址](https://repo.spring.io/libs-release-local/org/springframework/spring/ "点击下载")<br>
 Java类：
 ```Java
 public class IAccountServiceImpl implements IAccountService {
