@@ -170,3 +170,8 @@ Spring的依赖注入注入的方式：
        p:name="张三">
 </bean>
 ```
+二、Spring基于注解
+```Java
+@Component("accountService")
+public class AccountServiceImpl implements IAccountService {}
+```
