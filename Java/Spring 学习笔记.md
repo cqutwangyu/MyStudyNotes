@@ -30,10 +30,13 @@ Main:<br>
 ```Java
     public static void main(String[] args) {
         //1.获取Spring的核心容器
-        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");//由于我的bean.xml位于src下，直接写入即可。
+        //由于我的bean.xml位于src下，直接写入即可。
+        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         //2.根据bean的id获取对象
-        IAccountService as = (IAccountService) ac.getBean("accountService");//返回一个object，需要强转为IAccountService
-        IAccountDao adao = ac.getBean("accountDao", IAccountDao.class);//传入IAccountDao类的字节码，返回一个IAccountDao
+        //返回一个object，需要强转为IAccountService
+        IAccountService as = (IAccountService) ac.getBean("accountService");
+        //传入IAccountDao类的字节码，返回一个IAccountDao
+        IAccountDao adao = ac.getBean("accountDao", IAccountDao.class);
         System.out.println(as);
         System.out.println(adao);
     }
@@ -52,8 +55,8 @@ bean.xml
 <bean id="accountService" class="com.wangyu.service.impl.AccountServiceImpl"/>
 ```
 Main:
-```
-       ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");//由于我的bean.xml位于src下，直接写入即可。
+```    //由于我的bean.xml位于src下，直接写入即可。
+       ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
        IAccountService as = (IAccountService) ac.getBean("accountService");
 ```
 ##### 第二种：通过静态工厂创建bean对象
@@ -143,6 +146,7 @@ Spring的依赖注入注入的方式：
        <constructor-arg name="age"value="18"></constructor-arg>
        <constructor-arg name="birthday"ref="now"></constructor-arg>
 </bean>
+
 <!-- 
 第二种：使用set方法注入常用
        涉及的标签：property该标签也是要写在bean标签内部的子标签
@@ -157,6 +161,7 @@ Spring的依赖注入注入的方式：
        <property name="birthday"ref="now"></property>r
 </bean>
 <bean id="now"class="java.util.Date"></bean>
+
 <!-- 
 使用p名称空间注入
 的本质仍然是需要类中提供set方法，同时在配置文件中要导入p名称空间 
