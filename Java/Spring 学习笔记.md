@@ -6,7 +6,7 @@ Spring 学习笔记
 ### 1、Spring入门
 * 使用idea创建新项目，勾选Spring(4.3.18)，这样会自动导入Spring中常用的jar包，或者手动下载：[下载地址](https://repo.spring.io/libs-release-local/org/springframework/spring/ "点击下载")<br>
 * Spring提供了核心容器，可以将配置好的bean对象存放在容器中。当程序需要时，根据需要的对象类型到容器中查找。若找到唯一匹配类型的对象则直接返回对，若没找到则报异常。若找到多个相同类型的对象则根据变量名来继续查找，若找到则返回对象，若没有找到则报异常。
-* 以下程序中，ClassPathXmlApplicationContext读取bean.xml配置文件，并通过根据xml中定义的bean对象的id来进行查找。
+* 以下程序中，ClassPathXmlApplicationContext读取bean.xml配置文件，并通过根据xml中定义的bean对象的id来进行查找。<br>
 Java类：<br>
 ```Java
 public class AccountServiceImpl implements IAccountService {
@@ -47,7 +47,7 @@ com.wangyu.dao.impl.AccountDaoImpl@402f32ff
 ##### 第一种：通过调用构造函数来创建bean对象
 * 在默认情况下，当我们在spring的配置文件中写了一个bean标签，并提供了class属性，spring就会调用默认构造函数创建对象。
 * 如果没有默认构造函数，则对象创建失败。
-* bean.xml
+bean.xml
 ```Xml
 <bean id="accountService" class="com.wangyu.service.impl.AccountServiceImpl"/>
 ```
