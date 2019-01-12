@@ -53,6 +53,7 @@ bean.xml
 ```
 Main:
 ```
+       ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");//由于我的bean.xml位于src下，直接写入即可。
        IAccountService as = (IAccountService) ac.getBean("accountService");
 ```
 ##### 第二种：通过静态工厂创建bean对象
@@ -71,6 +72,7 @@ bean.xml
 ```
 Main:
 ```Java
+       ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");//由于我的bean.xml位于src下，直接写入即可。
        IAccountService as = (IAccountService) ac.getBean("staticAccountService");
 ```
 ##### 第三种：通过实例工厂创建bean对象
