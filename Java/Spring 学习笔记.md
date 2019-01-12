@@ -42,7 +42,7 @@ public class AccountDaoImpl implements IAccountDao {
 com.wangyu.service.impl.AccountServiceImpl@48eff760
 com.wangyu.dao.impl.AccountDaoImpl@402f32ff
 ```
-#### bean对象的三种创建方式：
+### bean对象的三种创建方式：
 ##### 第一种：通过调用构造函数来创建bean对象
 * 在默认情况下，当我们在spring的配置文件中写了一个bean标签，并提供了class属性，spring就会调用默认构造函数创建对象。
 * 如果没有默认构造函数，则对象创建失败。
