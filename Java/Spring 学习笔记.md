@@ -8,12 +8,12 @@ Spring 学习笔记
 * 以下程序中，ClassPathXmlApplicationContext读取bean.xml配置文件，并通过根据xml中定义的bean对象的id来进行查找。
 Java类：<br>
 ```Java
-public class IAccountServiceImpl implements IAccountService {
+public class AccountServiceImpl implements IAccountService {
 }
 public class AccountDaoImpl implements IAccountDao {
 }
 ```
-bean.xml：<br>
+* bean.xml：<br>
 ```Xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -21,11 +21,11 @@ bean.xml：<br>
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
         
-    <bean id="accountService" class="com.wangyu.service.impl.IAccountServiceImpl"/>
+    <bean id="accountService" class="com.wangyu.service.impl.AccountServiceImpl"/>
     <bean id="accountDao" class="com.wangyu.dao.impl.AccountDaoImpl"/>
 </beans>
 ```
-Main:<br>
+* Main:<br>
 ```Java
     public static void main(String[] args) {
         //1.获取Spring的核心容器
@@ -37,8 +37,54 @@ Main:<br>
         System.out.println(adao);
     }
 ```
-输出结果：
+* 输出结果：
 ```Java
-com.wangyu.service.impl.IAccountServiceImpl@48eff760
+com.wangyu.service.impl.AccountServiceImpl@48eff760
 com.wangyu.dao.impl.AccountDaoImpl@402f32ff
+```
+### bean对象的三种创建方式
+#### bean对象的三种创建方式：
+##### 第一种：通过调用构造函数来创建bean对象
+* 在默认情况下，当我们在spring的配置文件中写了一个bean标签，并提供了class属性，spring就会调用默认构造函数创建对象。
+* 如果没有默认构造函数，则对象创建失败。
+* bean.xml
+```Xml
+<bean id="accountService" class="com.wangyu.service.impl.AccountServiceImpl"/>
+```
+* Main:
+```
+       IAccountService as = (IAccountService) ac.getBean("accountService");
+```
+##### 第二种：通过静态工厂创建bean对象
+* 工厂类中提供一个静态方法，可以返回要用的bean对象。
+* StaticBeanFactory.java
+```Java
+public class StaticBeanFactory {
+    public static IAccountService getBean() {
+        return new AccountServiceImpl();
+    }
+}
+```
+* bean.xml
+```Xml
+<bean id="staticAccountService" class="com.wangyu.factory.StaticBeanFactory" factory-method="getBean"/>
+```
+* Main:
+```Java
+       IAccountService as = (IAccountService) ac.getBean("staticAccountService");
+```
+##### 第三种：通过实例工厂创建bean对象
+* 工厂类中提供一个普通方法，可以返回要用的bean对象。
+* InstanceBeanFactory.java
+```Java
+public class InstanceBeanFactory {
+    public IAccountService getBean() {
+        return new AccountServiceImpl();
+    }
+}
+```
+* bean.xml
+```Xml
+<bean id="instanceFactory" class="com.wangyu.factory.InstanceBeanFactory"/>
+<bean id="instanceAccountService" factory-bean="instanceFactory" factory-method="getBean"/>
 ```
