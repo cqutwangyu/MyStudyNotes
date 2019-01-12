@@ -14,7 +14,7 @@ public class AccountServiceImpl implements IAccountService {
 public class AccountDaoImpl implements IAccountDao {
 }
 ```
-* bean.xml：<br>
+bean.xml：<br>
 ```Xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -26,7 +26,7 @@ public class AccountDaoImpl implements IAccountDao {
     <bean id="accountDao" class="com.wangyu.dao.impl.AccountDaoImpl"/>
 </beans>
 ```
-* Main:<br>
+Main:<br>
 ```Java
     public static void main(String[] args) {
         //1.获取Spring的核心容器
@@ -38,7 +38,7 @@ public class AccountDaoImpl implements IAccountDao {
         System.out.println(adao);
     }
 ```
-* 输出结果：
+输出结果：
 ```Java
 com.wangyu.service.impl.AccountServiceImpl@48eff760
 com.wangyu.dao.impl.AccountDaoImpl@402f32ff
@@ -51,13 +51,13 @@ com.wangyu.dao.impl.AccountDaoImpl@402f32ff
 ```Xml
 <bean id="accountService" class="com.wangyu.service.impl.AccountServiceImpl"/>
 ```
-* Main:
+Main:
 ```
        IAccountService as = (IAccountService) ac.getBean("accountService");
 ```
 ##### 第二种：通过静态工厂创建bean对象
 * 工厂类中提供一个静态方法，可以返回要用的bean对象。
-* StaticBeanFactory.java
+StaticBeanFactory.java
 ```Java
 public class StaticBeanFactory {
     public static IAccountService getBean() {
@@ -65,17 +65,17 @@ public class StaticBeanFactory {
     }
 }
 ```
-* bean.xml
+bean.xml
 ```Xml
 <bean id="staticAccountService" class="com.wangyu.factory.StaticBeanFactory" factory-method="getBean"/>
 ```
-* Main:
+Main:
 ```Java
        IAccountService as = (IAccountService) ac.getBean("staticAccountService");
 ```
 ##### 第三种：通过实例工厂创建bean对象
 * 工厂类中提供一个普通方法，可以返回要用的bean对象。
-* InstanceBeanFactory.java
+InstanceBeanFactory.java
 ```Java
 public class InstanceBeanFactory {
     public IAccountService getBean() {
@@ -83,7 +83,7 @@ public class InstanceBeanFactory {
     }
 }
 ```
-* bean.xml
+bean.xml
 ```Xml
 <bean id="instanceFactory" class="com.wangyu.factory.InstanceBeanFactory"/>
 <bean id="instanceAccountService" factory-bean="instanceFactory" factory-method="getBean"/>
