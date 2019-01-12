@@ -90,3 +90,26 @@ bean.xml
 <bean id="instanceFactory" class="com.wangyu.factory.InstanceBeanFactory"/>
 <bean id="instanceAccountService" factory-bean="instanceFactory" factory-method="getBean"/>
 ```
+### 3、bean对象的作用范围和生命周期：
+##### 作用范围：
+* 它是可以通过配置的方式来指定的。
+```
+<bean id="accountService" class="com.wangyu.service.impl.AccountServiceImpl" scope="prototype"/>
+配置的属性：bean标签的scope属性属性的取值：
+singleton：单例的。默认值 最常用的
+prototype：多例的。
+request：请求范围。
+session：会话范围。
+global-session：全局会话范围
+```
+
+##### 生命周期
+```
+单例对象:
+       出生：容器创建对象出生。
+       活着：只要容器存在，对象就一直可用。
+       死亡：容器销毁，对象消亡。
+多例对象:
+       出生：每次使用时，容器会为我们创建对象。活着：只要对象在使用过程中，就一直活着。
+       死亡:当对象长时间不用，并且也没有其他对象引用时，由java的垃圾回收器回收。
+```
