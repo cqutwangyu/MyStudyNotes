@@ -117,9 +117,10 @@ bean.xml
        死亡:当对象长时间不用，并且也没有其他对象引用时，由java的垃圾回收器回收。
 ```
 
-### 4、依赖注入
-```
-Spring的依赖注入注入的方式：有3种（xml两种，注解方式一种）
+### 4、Xml方式依赖注入
+```xml
+<!-- 
+Spring的依赖注入注入的方式：
        第一种方式：通过构造函数注入
        第二种方式：通过set方法注入
 注入的内容：
@@ -133,10 +134,26 @@ Spring的依赖注入注入的方式：有3种（xml两种，注解方式一种�
               type：指定要注入的参数在构造函数中的类型
               index：指定要注入的参数在构造函数的索引位置
               name：指定参数在构造函数的中的名称
-              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。
-第二种：使用set方法注入常用
+              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。 -->
+<bean id="accountService"class="com.itheima.service.impl.AccountServiceImpl">
+       <constructor-arg name="name"value="赛新待"></constructor-arg>
+       <constructor-arg name="age"value="18"></constructor-arg>
+       <constructor-arg name="birthday"ref="now"></constructor-arg>
+</bean>
+<!-- 第二种：使用set方法注入常用
        涉及的标签：property该标签也是要写在bean标签内部的子标签
               标签的属性：
               name：指定的是set方法的名称。匹配的是类中set后面的部分。
-              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。
+              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。 -->
+<bean id="accountService2"class="com.itheima.service.impl.AccountServiceImpl2">
+       <property name="name"value="test"></property>
+       <property name="age"value="21"></property>
+       <property name="birthday"ref="now"></property>r
+</bean>
+<bean id="now"class="java.util.Date"></bean>
+<!-- 使用p名称空间注入
+的本质仍然是需要类中提供set方法，同时在配置文件中要导入p名称空间 -->
+<bean id="accountService3"class="com.itheima.service.impl.AccountServiceImpl3"
+       p:name="张三">
+</bean>
 ```
