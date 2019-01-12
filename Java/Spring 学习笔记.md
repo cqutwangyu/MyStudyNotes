@@ -23,6 +23,7 @@ bean.xml：<br>
         
     <bean id="accountService" class="com.wangyu.service.impl.IAccountServiceImpl"/>
     <bean id="accountDao" class="com.wangyu.dao.impl.AccountDaoImpl"/>
+</beans>
 ```
 Main:<br>
 ```Java
