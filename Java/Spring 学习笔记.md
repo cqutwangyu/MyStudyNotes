@@ -72,7 +72,8 @@ bean.xml
 ```
 Main:
 ```Java
-       ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");//由于我的bean.xml位于src下，直接写入即可。
+       //由于我的bean.xml位于src下，直接写入即可。
+       ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
        IAccountService as = (IAccountService) ac.getBean("staticAccountService");
 ```
 ##### 第三种：通过实例工厂创建bean对象
@@ -134,7 +135,8 @@ Spring的依赖注入注入的方式：
               type：指定要注入的参数在构造函数中的类型
               index：指定要注入的参数在构造函数的索引位置
               name：指定参数在构造函数的中的名称
-              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。 -->
+              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据
+              ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。 -->
 <bean id="accountService"class="com.itheima.service.impl.AccountServiceImpl">
        <constructor-arg name="name"value="赛新待"></constructor-arg>
        <constructor-arg name="age"value="18"></constructor-arg>
@@ -144,7 +146,8 @@ Spring的依赖注入注入的方式：
        涉及的标签：property该标签也是要写在bean标签内部的子标签
               标签的属性：
               name：指定的是set方法的名称。匹配的是类中set后面的部分。
-              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。 -->
+              value：指定注入的数据内容，他只能指定基本类型数据和String类型数据
+              ref：指定其他bean类型数据。写的是其他bean的id。其他bean指的是存在于spring容器中的bean。 -->
 <bean id="accountService2"class="com.itheima.service.impl.AccountServiceImpl2">
        <property name="name"value="test"></property>
        <property name="age"value="21"></property>
