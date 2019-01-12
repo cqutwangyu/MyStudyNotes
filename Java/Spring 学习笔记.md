@@ -95,12 +95,13 @@ bean.xml
 * 它是可以通过配置的方式来指定的。
 ```
 <bean id="accountService" class="com.wangyu.service.impl.AccountServiceImpl" scope="prototype"/>
-配置的属性：bean标签的scope属性属性的取值：
-singleton：单例的。默认值 最常用的
-prototype：多例的。
-request：请求范围。
-session：会话范围。
-global-session：全局会话范围
+配置的属性：
+       bean标签的scope属性属性的取值：
+              singleton：单例的。默认值 最常用的
+              prototype：多例的。
+              request：请求范围。
+              session：会话范围。
+              global-session：全局会话范围
 ```
 
 ##### 生命周期
