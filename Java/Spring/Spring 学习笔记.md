@@ -2,11 +2,11 @@ Spring 学习笔记
 ====
 目录
 ----
-* [一、Spring基于xml](#一spring的ioc入门案例)
-    * 1、Spring的IoC入门案例
-    * 2、bean对象的三种创建方式
-    * 3、bean对象的作用范围与生命周期
-    * 4、Xml方式依赖注入
+* [一、Spring基于xml](#一spring基于xml)
+    * [1、Spring的IoC入门案例](#1spring的IoC入门案例)
+    * [2、bean对象的三种创建方式](#2bean对象的三种创建方式)
+    * [3、bean对象的作用范围与生命周期](#3bean对象的作用范围与生命周期)
+    * [4、xml方式依赖注入](#4xml方式依赖注入)
 * [二、Spring基于注解](#二spring基于注解)<br>
 
 一、Spring基于xml
@@ -129,7 +129,7 @@ bean.xml
        死亡:当对象长时间不用，并且也没有其他对象引用时，由java的垃圾回收器回收。
 ```
 
-### 4、Xml方式依赖注入
+### 4、xml方式依赖注入
 ```xml
 <!-- 
 Spring的依赖注入注入的方式：
