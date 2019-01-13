@@ -173,14 +173,14 @@ Spring的依赖注入注入的方式：
 二、Spring基于注解
 ----
 * 用于创建对象的：<br>
-    @Component:<br>
-        作用：就相当于在spring的xml配置文件中写了一个bean标签。<br><br>
-        属性：<br>
-            value:用于指定bean的id，当不写时默认值是当前类名，首字母改小写，例如：accountServiceImpl<br>
-            由此注解衍生的三个注解：<br>
-    @Controller:一般用于表现层<br>
-    @Service:一般用于业务层<br>
-    @Repository:一般用于持久层<br>
+ * @Component:<br>
+  * 作用：就相当于在spring的xml配置文件中写了一个bean标签。<br><br>
+  * 属性：<br>
+   * value:用于指定bean的id，当不写时默认值是当前类名，首字母改小写，例如：accountServiceImpl<br>
+* 由@Component生的三个注解：<br>
+ * @Controller:一般用于表现层<br>
+ * @Service:一般用于业务层<br>
+ * @Repository:一般用于持久层<br>
 * 他们的作用以及属性和@Component的作用是一模一样的，他们的出现是spring框架为我们提供更明确的语义来指定不同层的bean对象。
 ```Java
 @Component("accountService")
