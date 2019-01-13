@@ -1,6 +1,13 @@
 Spring 学习笔记
 ====
-
+目录
+----
+* [一、Spring基于xml](#一、Spring基于xml)
+    * 1、Spring的IoC入门案例
+    * 2、bean对象的三种创建方式
+    * 3、bean对象的作用范围与生命周期
+    * 4、Xml方式依赖注入
+* [一、Spring基于xml](#一、Spring基于xml)
 一、Spring基于xml
 ----
 ### 1、Spring的IoC入门案例
