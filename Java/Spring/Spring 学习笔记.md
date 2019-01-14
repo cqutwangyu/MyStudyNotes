@@ -274,4 +274,82 @@ public class AccountServiceImpl implements IAccountService {
     }
 }
 ```
+### 4、Spring注解配置
+SpringConfiguration.java
+```Java
+/**
+ * Spring的配置类，作用相当于bean.xml文件
+ *
+ * @Configuration 它就相当于表明当前类是spring的配置类。
+ * 如果只是写到AnnotationConfigApplicationContext构造函数中的字节码，可以不写。
+ * 如果是加载要扫描的包时，需要读到此类的配置，同时又没把此类的字节码提供给AnnotationConfigApplicationContext构造函数，则必须写。
+ */
+//@Configuration
+@ComponentScan({"com.wangyu", "config"})//指定创建容器时要扫描的包
+@Import(JdbcConfig.class)//用于导入其他的配置类
+@PropertySource("config/jdbcConfig.properties")//导入配置文件，早起版本应写为"classpath:config/jdbcConfig.propertie"
+public class SpringConfiguration {
+
+    /**
+     * 在spring 4.3以前的版本，需要手动配置占位符解析器
+     * @return
+     */
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer create(){
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+}
+```
+jdbcConfig.java
+```Java
+/**
+ * 和jdbc相关的配置类
+ */
+public class JdbcConfig {
+    @Value("${jdbc.driver}")
+    private String jdbcDriver;
+    @Value("${jdbc.url}")
+    private String jdbcUrl;
+    @Value("${jdbc.username}")
+    private String userName;
+    @Value("${jdbc.password}")
+    private String passwrod;
+
+    /**
+     * @param dataSource
+     * @return
+     * @Bean注解： 作用：把当前方法的返回值作为bean对象存入spring容器之中。
+     * 属性：
+     * name：用于指定bean的id。如果没写该属性的话，默认值是当前的方法名。
+     * Spring框架给带有bean注解的方法创建对象时，如果方法有参数，会用方法参数的数据类型前往容器中查找。
+     * 如果能找到唯一的一个类型匹配，则直接给方法的参数注入。
+     * 如果找不到，就报错
+     * 如果找到多个，就需要借助Qualifier注解，此时它可以独立使用
+     */
+    @Bean("dbAssit")
+    public DBAssit createDBAssit(@Qualifier("dataSource") DataSource dataSource) {
+        return new DBAssit(dataSource);
+    }
+
+    /**
+     * 创建数据源
+     *
+     * @return
+     */
+    @Bean("dataSource")
+    public DataSource createDataSource() {
+        try {
+            ComboPooledDataSource ds = new ComboPooledDataSource();
+            ds.setDriverClass(jdbcDriver);
+            ds.setJdbcUrl(jdbcUrl);
+            ds.setUser(userName);
+            ds.setPassword(passwrod);
+            return ds;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+```
 [回到顶部](#spring-学习笔记)
