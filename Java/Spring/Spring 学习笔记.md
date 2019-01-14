@@ -207,8 +207,7 @@ public class AccountControllerImpl implements IAccountController {}
 ### 2、用于注入数据的注解
 * 用于注入其他bean类型的注解：
     * @Autowired
-        * 作用：自动按照类型注入。只要容器中有唯一的类型匹配，则可以直接注入成功。
-            * 如果有多个类型匹配时，会先按照类型找到符合条件的对象，然后再用变量名称作为bean的id，从里面继续查找，如果找到仍然可以注入成功，如果没有匹配的id，则报错。
+        * 作用：自动按照类型注入。只要容器中有唯一的类型匹配，则可以直接注入成功。如果有多个类型匹配时，会先按照类型找到符合条件的对象，然后再用变量名称作为bean的id，从里面继续查找，如果找到仍然可以注入成功，如果没有匹配的id，则报错。
         * 细节：当使用此注解注入时，set方法可以省略。
         * 属性：
             * required：是否必须注入成功，取值是true（默认组）/false，当取值是true时，没有匹配的对象就报错。
@@ -220,11 +219,11 @@ public class AccountControllerImpl implements IAccountController {}
         * 作用：直接按照bean的id注入。
         * 属性：
             * name：用于指定bean的id。
-            * 以上3个注解，都只能用于注入其他bean类型，而不能注入基本类型和String。
+    * 以上3个注解，都只能用于注入其他bean类型，而不能注入基本类型和String。
+    
 * 用于注入基本类型和String类型的数据：
     * @Value
         * 作用：用于注入基本类型和string类型的数据。
         * 属性：
-            * value：用于指定要注入的数据。它支持使用spring的el表达式
-            * spring的el表达式写法：${表达式}
+            * value：用于指定要注入的数据。它支持使用spring的el表达式,spring的el表达式写法：${表达式}
 [回到顶部](#spring-学习笔记)
