@@ -193,7 +193,7 @@ Spring的依赖注入注入的方式：
     * `@Controller`一般用于表现层（控制层）<br>
     * `@Service`一般用于业务层<br>
     * `@Repository`一般用于持久层<br>
-   * 他们的作用以及属性和@Component的作用是一模一样的，他们的出现是spring框架为我们提供更明确的语义来指定不同层的bean对象。
+   * 他们的作用以及属性和@Component的作用是一模一样的（只是继承于@Component而没有增加任何功能），他们的出现是spring框架为我们提供更明确的语义来指定不同层的bean对象。
 ```Java
 //业务层
     @Component("accountService1")//若不定义id，则默认为accountServiceImpl
@@ -230,7 +230,7 @@ Spring的依赖注入注入的方式：
     @Repository("accountDao2")
     public class AccountDaoImpl implements IAccountDao {}
     
-    //@Autowired//会提示找到两个继承了IAccountDao的类，无法找到唯一，报异常。
+    //@Autowired//会提示找到两个实现了IAccountDao的类，无法找到唯一，报异常。
     //@Qualifier("accountDao1")//此注解不能单独使用，需在@Autowired注解下使用，意味着先根据类查找bean对象，再根据id查找对象。
     @Resource("accountDao2")//此注解可单独使用，直接根据id查找对象，在有多个同类对象时常用。
     private IAccountDao accountDao;
