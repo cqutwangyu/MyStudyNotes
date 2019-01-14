@@ -277,19 +277,19 @@ public class AccountServiceImpl implements IAccountService {
 ```
 ### 4、Spring注解配置
 * 配置类常用注解
-    * @Configuration
+    * `@Configuration`
         * 作用：
             * 它就相当于表明当前类是spring的配置类。如果只是写到AnnotationConfigApplicationContext构造函数中的字节码，可以不写。
             * 如果是加载要扫描的包时，需要读到此类的配置，同时又没把此类的字节码提供给AnnotationConfigApplicationContext构造函数，则必须写。
-    * @ComponentScan
+    * `@ComponentScan`
         * 作用：指定创建容器时要扫描的包
-    * @Import
+    * `@Import`
         * 作用：用于导入其他的配置类
-    * @PropertySource
+    * `@PropertySource`
         * 作用：导入配置文件，早期版本应写为"classpath:config/jdbcConfig.propertie"
-    * @Bean
+    * `@Bean`
         * 作用：把当前方法的返回值作为bean对象存入spring容器之中。
-SpringConfiguration.java
+* SpringConfiguration.java
 ```Java
 /**
  * Spring的配置类，作用相当于bean.xml文件
@@ -310,7 +310,7 @@ public class SpringConfiguration {
     }
 }
 ```
-jdbcConfig.java
+* jdbcConfig.java
 ```Java
 /**
  * 和jdbc相关的配置类
