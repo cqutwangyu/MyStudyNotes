@@ -196,16 +196,16 @@ Spring的依赖注入注入的方式：
    * 他们的作用以及属性和@Component的作用是一模一样的，他们的出现是spring框架为我们提供更明确的语义来指定不同层的bean对象。
 ```Java
 //业务层
-@Component("accountService1")//若不定义id，则默认为accountServiceImpl
-public class AccountServiceImpl implements IAccountService {}
-@Service("accountService2")
-public class AccountServiceImpl_old implements IAccountService {}
-//持久层
-@Repository("accountDao")
-public class AccountDaoImpl implements IAccountDao {}
-//表现层（控制层）
-@Controller
-public class AccountControllerImpl implements IAccountController {}
+    @Component("accountService1")//若不定义id，则默认为accountServiceImpl
+    public class AccountServiceImpl implements IAccountService {}
+    @Service("accountService2")
+    public class AccountServiceImpl_old implements IAccountService {}
+    //持久层
+    @Repository("accountDao")
+    public class AccountDaoImpl implements IAccountDao {}
+    //表现层（控制层）
+    @Controller
+    public class AccountControllerImpl implements IAccountController {}
 ```
 ### 2、用于注入数据的注解
 * 用于注入其他bean类型的注解：
@@ -223,22 +223,55 @@ public class AccountControllerImpl implements IAccountController {}
         * 属性：
             * name：用于指定bean的id。
     * 以上3个注解，都只能用于注入其他bean类型，而不能注入基本类型和String。
+```Java
+    @Repository("accountDao1")
+    public class AccountDaoImpl implements IAccountDao {}
     
+    @Repository("accountDao2")
+    public class AccountDaoImpl implements IAccountDao {}
+    
+    //@Autowired//会提示找到两个继承了IAccountDao的类，无法找到唯一，报异常。
+    //@Qualifier("accountDao1")//此注解不能单独使用，需在@Autowired注解下使用，意味着先根据类查找bean对象，再根据id查找对象。
+    @Resource("accountDao2")//此注解可单独使用，直接根据id查找对象，在有多个同类对象时常用。
+    private IAccountDao accountDao;
+    
+```
 * 用于注入基本类型和String类型的数据：
     * `@Value`
         * 作用：用于注入基本类型和string类型的数据。
         * 属性：
             * value：用于指定要注入的数据。它支持使用spring的el表达式,spring的el表达式写法：${表达式}
+```Java    
+    /**
+     *  需要告知spring配置文件的位置<context:property-placeholder location="jdbcConfig.properties"/>
+     */
+    @Value("${jdbc.driver}")
+    private String driver;
+```
 ### 3、作用范围与生命周期
 * 用于改变作用范围：
-   * @Scope
+   * `@Scope`
       * 作用：用于改变bean的作用范围。取值和xml中的配置是一样的。
       * 属性：
          * value：用于指定范围。
 * 和生命周期相关的：
-   * @PostContruct
+   * `@PostContruct`
       * 作用：用于指定初始化方法。和配置文件中init-method属性是一样的
-   * @PreDestroy
+   * `@PreDestroy`
       * 作用：用于指定销毁方法。和配置文件中destroy-method属性是一样的
-  
+```Java
+@Service("accountService")//若不定义id，则默认为accountServiceImpl
+@Scope("prototype")//多例
+public class AccountServiceImpl implements IAccountService {
+    @PostConstruct
+    public void init(){
+        System.out.println("对象初始化了");
+    }
+    @PreDestroy
+    public void destroy(){
+        // 当容器销毁时执行，多例时由java垃圾回收自动销毁
+        System.out.println("对象销毁了");
+    }
+}
+```
 [回到顶部](#spring-学习笔记)
