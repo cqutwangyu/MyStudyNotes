@@ -8,6 +8,9 @@ Spring 学习笔记
     * [3、bean对象的作用范围与生命周期](#3bean对象的作用范围与生命周期)
     * [4、xml方式依赖注入](#4xml方式依赖注入)
 * [二、Spring基于注解](#二spring基于注解)<br>
+    * [1、用于创建bean对象的注解](#1用于创建bean对象的注解)
+    * [2、用于注入数据的注解](#2用于注入数据的注解)
+    * [3、作用范围与生命周期](#3作用范围与生命周期)
 
 一、Spring基于xml
 ----
@@ -226,4 +229,16 @@ public class AccountControllerImpl implements IAccountController {}
         * 作用：用于注入基本类型和string类型的数据。
         * 属性：
             * value：用于指定要注入的数据。它支持使用spring的el表达式,spring的el表达式写法：${表达式}
+### 3、作用范围与生命周期
+* 用于改变作用范围：
+   * @Scope
+      * 作用：用于改变bean的作用范围。取值和xml中的配置是一样的。
+      * 属性：
+         * value：用于指定范围。
+* 和生命周期相关的：
+   * @PostContruct
+      * 作用：用于指定初始化方法。和配置文件中init-method属性是一样的
+   * @PreDestroy
+      * 作用：用于指定销毁方法。和配置文件中destroy-method属性是一样的
+  
 [回到顶部](#spring-学习笔记)
