@@ -182,14 +182,14 @@ Spring的依赖注入注入的方式：
 ----
 ### 1、用于创建bean对象的注解
 * 用于创建对象的基础注解：<br>
-    * @Component:<br>
+    * `@Component`<br>
      * 作用：就相当于在spring的xml配置文件中写了一个bean标签。<br>
      * 属性：<br>
          * value:用于指定bean的id，当不写时默认值是当前类名，首字母改小写，例如：accountServiceImpl<br>
-* 由@Component衍生的三个注解：<br>
-    * @Controller:一般用于表现层（控制层）<br>
-    * @Service:一般用于业务层<br>
-    * @Repository:一般用于持久层<br>
+* 由`@Component`衍生的三个注解：<br>
+    * `@Controller`一般用于表现层（控制层）<br>
+    * `@Service`一般用于业务层<br>
+    * `@Repository`一般用于持久层<br>
    * 他们的作用以及属性和@Component的作用是一模一样的，他们的出现是spring框架为我们提供更明确的语义来指定不同层的bean对象。
 ```Java
 //业务层
@@ -206,23 +206,23 @@ public class AccountControllerImpl implements IAccountController {}
 ```
 ### 2、用于注入数据的注解
 * 用于注入其他bean类型的注解：
-    * @Autowired
+    * `@Autowired`
         * 作用：自动按照类型注入。只要容器中有唯一的类型匹配，则可以直接注入成功。如果有多个类型匹配时，会先按照类型找到符合条件的对象，然后再用变量名称作为bean的id，从里面继续查找，如果找到仍然可以注入成功，如果没有匹配的id，则报错。
         * 细节：当使用此注解注入时，set方法可以省略。
         * 属性：
             * required：是否必须注入成功，取值是true（默认组）/false，当取值是true时，没有匹配的对象就报错。
-    * @Qualifier
+    * `@Qualifier`
         * 作用：在自动按照类型注入的基础之上，再按照bean的id注入。在给类成员注入时，它不能够独立使用。
         * 属性：
             * value：用于指定bean的id。
-    * @Resource
+    * `@Resource`
         * 作用：直接按照bean的id注入。
         * 属性：
             * name：用于指定bean的id。
     * 以上3个注解，都只能用于注入其他bean类型，而不能注入基本类型和String。
     
 * 用于注入基本类型和String类型的数据：
-    * @Value
+    * `@Value`
         * 作用：用于注入基本类型和string类型的数据。
         * 属性：
             * value：用于指定要注入的数据。它支持使用spring的el表达式,spring的el表达式写法：${表达式}
