@@ -12,7 +12,7 @@ Spring 学习笔记
     * [2、用于注入数据的注解](#2用于注入数据的注解)
     * [3、作用范围与生命周期](#3作用范围与生命周期)
     * [4、Spring注解配置](#4Spring注解配置)
-
+* [三、Spring的AOP](#三spring的AOP)<br>
 一、Spring基于xml
 ----
 ### 1、Spring的IoC入门案例
@@ -362,4 +362,7 @@ public class JdbcConfig {
 }
 
 ```
+### 三、Spring的AOP
+
+
 [回到顶部](#spring-学习笔记)
