@@ -3,6 +3,7 @@ SessionFactory:
 * `SessionFactory`对应Hibernate的一个数据存储的概念，它是`线程安全`的，`可以被多个线程并发访问`。
 * SessionFactory一般只会在启动的时候构建。
 * 对于应用程序，最好将SessionFactory通过单例模式进行封装以便于访问。
+
 Session:
 * `Session`是一个轻量级`非线程安全`的对象（线程间`不能共享`session），它表示与数据库进行交互的一个工作单元。
 * Session是由SessionFactory创建的，在任务完成之后它会被关闭。
