@@ -25,6 +25,7 @@
 4. `git merge <name>`合并分支
 5. `git checkout <name>`切换分支
 6. `git checkout -b <name>`创建并切换分支
+7. `git branch --set-upstream-to=origin/dev  dev`本地仓库分支连接远程仓库分支
 
 ## 二、远程仓库
 
