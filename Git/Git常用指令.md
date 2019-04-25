@@ -32,11 +32,13 @@
 1. `git pull` 从远程仓库拉取。
 2. `git remote -v`查看远程仓库信息。
 3. `git clone git@github.com:ChongqingWangYu/My-study-notes.git`从远程仓库克隆到本地仓库。
-4. `git remote add origin git@server-name:path/repo-name.git`关联一个远程仓库。
-5. `git push -u origin master`关联后第一次推送master分支的所有内容。
-6. `git push`把当前分支`master`推送到远程。
-7. `git push origin master`同指令3功能类似，`origin`代表远程仓库，`master`代表主分支（分支名）。
-8. ``git push -f origin master``强制推送本地仓库master分支覆盖远程仓库master分支
+4. `git clone -b dev git@github.com:WangYu/notes.git`从远程仓库克隆dev分支到本地仓库。
+5. `git remote add origin git@server-name:path/repo-name.git`关联一个远程仓库。
+6. `git push -u origin master`关联后第一次推送master分支的所有内容。
+7. `git push`把当前分支`master`推送到远程。
+8. `git push origin master`同指令3功能类似，`origin`代表远程仓库，`master`代表主分支（分支名）。
+9. ``git push -f origin master``强制推送本地仓库master分支覆盖远程仓库master分支
+10. `git rm -r --cached .idea                                                       `删除提交到仓库的不必要的文件夹，但不会删除磁盘上的文件。
 
 ## 三、标签管理
 
