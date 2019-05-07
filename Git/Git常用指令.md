@@ -2,7 +2,7 @@
 
 ## 一、本地仓库
 
-### 基本操作：
+### 1. 基本操作：
 
 1. `git init`初始化一个`Git`仓库。
 2. `git add <filename>`将更新后的文件提交到`Git`仓库本地暂存区。
@@ -11,13 +11,13 @@
 5. `git commit -am <message>`类似于指令2+4的组合，但区别在于，指令5只能提交已经提交过的文件，也就是说新增的文件无法提交。
 6. `git checkout --file` 丢弃暂存区的修改。
 
-### 版本回退：
+### 2. 版本回退：
 
 1. `git log`查看提交日志
 2. `git reset --hard commit_id`回退到`commit_id`（版本号）。
 3. `git reflog`查看命令历史
 
-### 分支管理：
+### 3. 分支管理：
 
 1. `git branch`查看分支
 2. `git branch <name>` 创建分支
