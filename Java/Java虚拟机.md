@@ -1,5 +1,7 @@
 # 一、基础
 
+[JVM参数设置详解](https://blog.csdn.net/weixin_37195606/article/details/82805216)
+
 ## 1. 内存
 
 -Xms设置内存初始化大小
