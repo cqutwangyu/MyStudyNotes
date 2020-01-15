@@ -21,7 +21,7 @@ Spring 学习笔记
 * IoC最大的好处就是“解耦”。
 * 使用idea创建新项目，勾选Spring(4.3.18)，这样会自动导入Spring中常用的jar包，或者手动下载：[下载地址](https://repo.spring.io/libs-release-local/org/springframework/spring/ "点击下载")<br>
 * Spring提供了核心容器，可以将配置好的bean对象存放在容器中。当程序需要时，根据需要的对象类型到容器中查找。若找到唯一匹配类型的对象则直接返回对，若没找到则报异常。若找到多个相同类型的对象则根据变量名来继续查找，若找到则返回对象，若没有找到则报异常。
-* 以下程序中通过`ClassPathXmlApplicationContext`读取`bean.xml`配置文件，并通过根据`xml`中定义的`bean`对象的`id`来进行查找。<br>
+* 1以下程序中通过`ClassPathXmlApplicationContext`读取`bean.xml`配置文件，并通过根据`xml`中定义的`bean`对象的`id`来进行查找。<br>
 Java类：<br>
 ```Java
 public class AccountServiceImpl implements IAccountService {
@@ -366,7 +366,6 @@ public class JdbcConfig {
 
 ```
 ### 三、Spring的AOP
-
 
 
 
