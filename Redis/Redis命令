@@ -1,0 +1,9 @@
+1. `redis-server.exe redis.windows.conf`cmd进入redis目录后执行命令，在windows平台运行redis。配置环境变量后快速启动`redis-server.exe G:\Redis-x64-3.2.100\redis.windows.conf`，redis.windows.conf的路径必须为绝对路径，或者配置`%REDIS_HOME%`后使用命令`redis-server %REDIS_HOME%\redis.windows.conf`
+2. `redis-cli.exe -h 127.0.0.1 -p 6379`连接redis
+3. `set myKey abc`设置键值对
+4. `get myKey` 取出键值对
+5. `SETNX key value`如果不存在则set，set成功返回1。已存在，set失败返回0
+6. `SETEX key seconds value`将值 value关联到 key ，并将 key的生存时间设为 seconds (以秒为单位)。并且setex是原子性操作，关联值和设置生存时间两个动作会在同一时间内完成。
+7. `keys *`获取所有的key
+8. `flushall`清除所有的key、value
+
