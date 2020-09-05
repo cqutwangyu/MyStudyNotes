@@ -689,6 +689,16 @@ SELECT E_Name FROM Employees_USA
 | Bush, George   |
 | Gates, Bill    |
 
+## SQL OPTIMIZE
+
+在`delete`表数据时带`where`条件的**都不是真正删除，只是MySQL给记录加了个删除标识**，所以当一个表频繁增删数据，会导致表空间越来越大。从而影响查询效率以及插入效率。
+
+使用 `OPTIMIZE TABLE student_table` 可以将有**删除标识**的数据真正删除，从而提升查询效率。可通过定时任务对表进行优化。
+
+## SHOW PROCESSLIST
+
+`SHOW PROCESSLIST`可以查询出所有在操作MySQL的进程，state为表状态，并通过`KILL SHOW PROCESSID`杀死进程从而对表解锁。
+
 # SQL 函数
 
 ## SQL GROUP BY
