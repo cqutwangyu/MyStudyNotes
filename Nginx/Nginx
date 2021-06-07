@@ -1,0 +1,190 @@
+## Nginx
+
+##### Nginx安装
+
+```shell
+#安装wget，用于下载网络资源
+yum -y install wget
+#下载nginx安装包，可直接访问url下载
+wget -O nginx12.0.1.tar.gz https://nginx.org/download/nginx-1.20.1.tar.gz
+#解压nginx安装包
+tar zxvf nginx12.0.1.tar.gz
+#安装nginx依赖包
+yum -y install gcc pcre-devel zlib-devel openssl-devel
+#进入nginx目录
+cd nginx-1.20.1/
+#编译nginx
+./configure --prefix=/usr/local/nginx
+#如果找不到make命令，先安装make命令,再编译
+yum -y install gcc automake autoconf libtool make
+make && make install
+#查看nginx安装路径
+whereis nginx
+#创建软连接
+ln -s /usr/local/nginx/sbin/nginx /usr/bin/nginx
+#启动nginx
+nginx
+#访问nginx默认80端口
+curl localhost:80
+```
+
+##### Nginx原生文件浏览配置
+
+![1622613104035](C:\Users\19033\AppData\Roaming\Typora\typora-user-images\1622613104035.png)
+
+/usr/local/nginx/conf/nginx.conf
+
+```shell
+#user administrator administrators;  #配置用户或者组，默认为nobody nobody。
+#worker_processes 2;  #允许生成的进程数，默认为1
+#pid /nginx/pid/nginx.pid;   #指定nginx进程运行文件存放地址
+
+error_log log/error.log debug;  #制定日志路径，级别。这个设置可以放入全局块，http块，server块，级别以此为：debug|info|notice|warn|error|crit|alert|emerg
+
+pid        logs/nginx.pid;
+
+events {
+    accept_mutex on;   #设置网路连接序列化，防止惊群现象发生，默认为on
+    multi_accept on;  #设置一个进程是否同时接受多个网络连接，默认为off
+    #use epoll;      #事件驱动模型，select|poll|kqueue|epoll|resig|/dev/poll|eventport
+    worker_connections  1024;    #最大连接数，默认为512
+}
+
+http{
+    include       mime.types;   #文件扩展名与文件类型映射表
+    #default_type  application/octet-stream; #默认文件类型，默认为text/plain
+    #access_log off; #取消服务日志
+    log_format myFormat '$remote_addr–$remote_user [$time_local] $request $status $body_bytes_sent $http_referer $http_user_agent $http_x_forwarded_for'; #自定义格式
+    access_log log/access.log myFormat;  #combined为日志格式的默认值
+    sendfile on;   #允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。
+    sendfile_max_chunk 100k;  #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。
+    keepalive_timeout 65;  #连接超时时间，默认为75s，可以在http，server，location块。
+server {
+    listen       8000;
+    charset 'utf-8';
+    override_charset on;
+    #跨域
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods 'GET,POST';
+    add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+    server_name localhost;
+
+		#默认下载
+        location /dl {
+         if ($request_filename ~* ^.*?.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx|jpg|png)$){
+                add_header Content-Disposition: 'attachment';
+                add_header  Content-Type application/octet-stream;
+         }
+         alias /;
+         #Nginx日志目录
+         autoindex on;
+         #打开目录浏览功能
+         autoindex_exact_size off;
+         #默认为on，显示出文件的确切大小，单位是bytes
+         #显示出文件的大概大小，单位是kB或者MB或者GB
+         autoindex_localtime on;
+         #默认为off，显示的文件时间为GMT时间。
+         #改为on后，显示的文件时间为文件的服务器时间
+         add_header Cache-Control no-store;
+         #让浏览器不保存临时文件
+         break;
+        }
+
+		#默认预览
+        location / {
+         #fancyindex on;              # Enable fancy indexes.
+         #fancyindex_exact_size off;  # Output human-readable file sizes.
+         alias /;
+         #Nginx日志目录
+         autoindex on;
+         #打开目录浏览功能
+         autoindex_exact_size off;
+         #默认为on，显示出文件的确切大小，单位是bytes
+         #显示出文件的大概大小，单位是kB或者MB或者GB
+         autoindex_localtime on;
+         #默认为off，显示的文件时间为GMT时间。
+         #改为on后，显示的文件时间为文件的服务器时间
+         add_header Cache-Control no-store;
+         #让浏览器不保存临时文件
+
+         #声明变量flag
+         set $flag 0;
+
+         if ($request_filename ~* ^.*?.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx|jpg|png)$){
+              set $flag 1;
+          }
+
+          #如果带有view说明是预览
+          if ($request_uri ~* view$){
+              set $flag 2;
+          }
+          if ($flag = 1){
+              add_header Content-Disposition: attachment;
+          }
+          index  index.html index.htm;
+        }
+
+}}
+```
+
+##### Nginx使用pdf.js浏览pdf、图片
+
+http://mozilla.github.io/pdf.js/
+
+```shell
+wget -O pdfjs-2.8.335-dist.zip https://github.com/mozilla/pdf.js/releases/download/v2.8.335/pdfjs-2.8.335-dist.zip
+yum -y install unzip
+unzip pdfjs-2.8.335-dist.zip
+mkdir pdfjs
+unzip -d ./pdfjs pdfjs-2.8.335-dist.zip
+cp -rf pdfjs/web /usr/local/html/
+```
+
+##### nginx+fancyindex漂亮目录浏览带搜索功能
+
+https://perso.crans.org/besson/publis/Nginx-Fancyindex-Theme/
+
+![1622612591072](C:\Users\19033\AppData\Roaming\Typora\typora-user-images\1622612591072.png)
+
+```shell
+#下载资源
+wget -O fancyindex.zip https://github.com/aperezdc/ngx-fancyindex/archive/v0.5.1.zip
+#下载样式
+wget -O fancytheme.zip https://github.com/Naereen/Nginx-Fancyindex-Theme/archive/refs/heads/master.zip
+#解压
+unzip fancyindex.zip
+unzip fancytheme.zip
+#复制配置到nginx中
+cp Nginx-Fancyindex-Theme-master/fancyindex.conf nginx-1.20.1/conf/
+#编译nginx
+./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --user=nginx --group=nginx --add-module=../ngx-fancyindex-0.5.1
+make && make install
+#复制配置
+cp Nginx-Fancyindex-Theme-master/fancyindex.conf /usr/local/nginx/conf
+#复制资源文件
+cp -rf Nginx-Fancyindex-Theme-master/Nginx-Fancyindex-Theme-light/ /usr/local/nginx/html/
+```
+
+vi /usr/local/nginx/conf/nginx.conf
+
+```shell
+http{
+	#启动Fancyindex模块
+    fancyindex off;
+    fancyindex_exact_size off;
+    fancyindex_localtime on;
+    fancyindex_header "/Nginx-Fancyindex-Theme-light/header.html"; #主题头部文件
+    fancyindex_footer "/Nginx-Fancyindex-Theme-light/footer.html"; #主题尾部文件
+    fancyindex_ignore "examplefile.html";
+    fancyindex_ignore "Nginx-Fancyindex-Theme-light"; #隐藏目录
+    fancyindex_name_length 255;
+    
+    location / {
+          root html;
+          include fancyindex.conf;
+          #index  index.html index.htm;
+        }    
+    }
+```
+
+启动nginx或nginx -s reload
